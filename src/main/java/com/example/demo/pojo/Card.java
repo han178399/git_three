@@ -7,7 +7,7 @@ import lombok.Data;
  * @Date 2021/3/22 18:43
  */
 @Data
-public class Card{
+public class Card {
 
     private Long id;
 
@@ -15,12 +15,24 @@ public class Card{
 
     private Long ownerId;
 
+    /**
+     * 总额
+     */
     private Long quota;
 
+    /**
+     * 已用额度
+     */
     private Long used;
 
+    /**
+     * 剩余额度
+     */
     private Long last;
 
+    /**
+     * 账单日
+     */
     private String giveDay;
 
     private String creatDate;

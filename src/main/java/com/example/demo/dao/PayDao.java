@@ -1,13 +1,13 @@
 package com.example.demo.dao;
 
-import com.example.demo.pojo.Card;
+import com.example.demo.pojo.PayInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * @Author hpf
- * @Date 2021/3/22 18:51
+ * @Author hanpengfei
+ * @Date 2021/3/22 22:42
  */
 @Repository
-public interface CardDao extends JpaRepository<Card, Long> {
+public interface PayDao extends JpaRepository<PayInfo, Long> {
 }

@@ -19,8 +19,18 @@ public class CardService {
     final CardDao cardDao;
 
 
-    public Card findOne(Long id){
+    public Card findOne(Long id) {
         Optional<Card> byId = cardDao.findById(id);
         return byId.orElse(null);
+    }
+
+    public void save(Card card) {
+        cardDao.save(card);
+        //此时用户卡增加 额度发生变化
+    }
+
+    public void del(Long id) {
+        //校验有无欠款 有欠款则不可删除该卡
+        cardDao.deleteById(id);
     }
 }
