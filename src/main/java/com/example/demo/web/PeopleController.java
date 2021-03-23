@@ -3,6 +3,7 @@ package com.example.demo.web;
 import com.example.demo.pojo.Card;
 import com.example.demo.pojo.People;
 import com.example.demo.service.PeopleService;
+import com.example.demo.util.ResultMsg;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +37,9 @@ public class PeopleController {
      * @return
      */
     @PostMapping("save")
-    Object save(@RequestBody People people) {
+    ResultMsg save(@RequestBody People people) {
         peopleService.save(people);
-        return null;
+        return ResultMsg.create(ResultMsg.SUCCESS);
     }
 
     /**
@@ -48,9 +49,9 @@ public class PeopleController {
      * @return
      */
     @GetMapping("del/{id}")
-    Object del(@PathVariable Long id) {
+    ResultMsg del(@PathVariable Long id) {
         peopleService.del(id);
-        return null;
+        return ResultMsg.create(ResultMsg.SUCCESS);
     }
 
     /**
@@ -60,8 +61,8 @@ public class PeopleController {
      * @return
      */
     @PostMapping("page")
-    Object page(@RequestBody Long id) {
+    ResultMsg page(@RequestBody Long id) {
         //cardService.del(id);
-        return null;
+        return ResultMsg.ok();
     }
 }

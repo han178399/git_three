@@ -1,9 +1,13 @@
 package com.example.demo.service;
 
+import cn.hutool.core.date.DateUtil;
 import com.example.demo.dao.CardDao;
+import com.example.demo.event.AddCardEvent;
 import com.example.demo.pojo.Card;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,6 +22,10 @@ public class CardService {
 
     final CardDao cardDao;
 
+    final PeopleService peopleService;
+
+    final ApplicationEventPublisher applicationEventPublisher;
+
 
     public Card findOne(Long id) {
         Optional<Card> byId = cardDao.findById(id);
@@ -25,7 +33,10 @@ public class CardService {
     }
 
     public void save(Card card) {
+        card.setCreatDate(DateUtil.now());
         cardDao.save(card);
+        applicationEventPublisher.publishEvent(new AddCardEvent(card.getOwnerId(),card.getQuota()));
+
         //此时用户卡增加 额度发生变化
     }
 

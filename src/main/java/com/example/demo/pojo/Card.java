@@ -2,13 +2,19 @@ package com.example.demo.pojo;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
 /**
  * @Author hpf
  * @Date 2021/3/22 18:43
  */
 @Data
+@Entity
+@Table
 public class Card {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

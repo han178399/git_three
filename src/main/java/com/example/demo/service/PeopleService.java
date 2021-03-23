@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import cn.hutool.core.date.DateUtil;
 import com.example.demo.dao.PeopleDao;
 import com.example.demo.pojo.Card;
 import com.example.demo.pojo.People;
@@ -22,10 +23,22 @@ public class PeopleService {
     }
 
     public void save(People people) {
+        if(people.getId()==null){
+            people.setCardNum(0L);
+            people.setMoney(0L);
+            people.setCreateDate(DateUtil.now());
+        }
         peopleDao.save(people);
     }
 
     public void del(Long id) {
         peopleDao.deleteById(id);
+    }
+
+    public void addMon(Long id,Long money){
+        People one = findOne(id);
+        one.setCardNum(one.getCardNum()+1);
+        one.setMoney(money+one.getMoney());
+        save(one);
     }
 }
